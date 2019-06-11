@@ -12,6 +12,8 @@ app
   .use(cors())
   .use(bodyParser.json())
 
-const server = app.listen(4000, console.log(`Listening on port ${port}`));
 
-const Test = require('./test/model')
+app.listen(port, console.log(`Listening on port ${port}`));
+
+const User = require('./users/model')
+const Event = require('./events/model')
