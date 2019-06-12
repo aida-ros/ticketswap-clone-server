@@ -5,7 +5,12 @@ const Comment = require("./model");
 const router = express.Router()
 
 router.get('/comments', (req, res) => {
-  res.send('hello world!')
+  Comment.findAll()
+		.then(comments => {
+			console.log(comments)
+			res.status(200).json({ comments })
+		})
+		.catch(console.error());
 })
 
 router.post('/comments', (req, res) => {

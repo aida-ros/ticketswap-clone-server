@@ -3,8 +3,14 @@ const Ticket = require("./model");
 
 const router = express.Router()
 
+// GETs all tickets
 router.get('/tickets', (req, res) => {
-  res.send('hello world!')
+  Ticket.findAll()
+		.then(tickets => {
+			console.log(tickets)
+			res.status(200).json({ tickets })
+		})
+		.catch(console.error());
 })
 
 router.post('/tickets', (req, res) => {
