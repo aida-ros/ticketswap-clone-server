@@ -21,4 +21,20 @@ router.post('/events', (req, res) => {
 	})
 })
 
+// GETs a specific event defined by id
+router.get('/events/:id', (req, res) => {
+	const id = req.params.id
+	Event.findByPk(id)
+		.then(event => {
+			if (!event) {
+				res.status(404).json({
+					message: 'This event does not exist'
+				})
+			} else {
+				res.json({ event })
+			}
+		})
+		.catch(console.error());
+})
+
 module.exports = router;
