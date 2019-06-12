@@ -15,10 +15,16 @@ router.get('/events', (req, res) => {
 })
 
 router.post('/events', (req, res) => {
-	res.json({
-		message: 'Post request to events received',
-		request: req.body
-	})
+	// res.json({
+	// 	message: 'Post request to events received',
+	// 	request: req.body
+	// })
+	Event.create(req.body)
+		.then(event => {
+			res.status(201).json({ 
+				message: 'Event created',
+				event: event })
+		})
 })
 
 // GETs a specific event defined by id
