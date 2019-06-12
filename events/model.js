@@ -32,7 +32,7 @@ const Event = sequelize.define('events', {
     }
   },
   start: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
     field: "start_date",
     allowNull: false,
     validate: {
@@ -40,7 +40,7 @@ const Event = sequelize.define('events', {
     }
   },
   end: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
     field: "end_date",
     allowNull: false,
     validate: {

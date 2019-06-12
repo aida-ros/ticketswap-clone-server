@@ -7,10 +7,18 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 // ROUTERS
+const usersRouter = require('./users/routes')
+const eventsRouter = require('./events/routes')
+const ticketsRouter = require('./tickets/routes')
+const commentsRouter = require('./comments/routes')
 
 app
   .use(cors())
   .use(bodyParser.json())
+  .use(usersRouter)
+  .use(eventsRouter)
+  .use(ticketsRouter)
+  .use(commentsRouter)
 
 app.listen(port, console.log(`Listening on port ${port}`));
 
