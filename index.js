@@ -16,7 +16,7 @@ const loginRouter = require('./auth/routes')
 app
   .use(cors())
   .use(bodyParser.json())
-  .use(usersRouter)
+  // .use(usersRouter)
   .use(eventsRouter)
   .use(ticketsRouter)
   .use(commentsRouter)
