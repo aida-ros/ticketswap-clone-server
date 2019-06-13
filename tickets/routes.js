@@ -13,11 +13,26 @@ router.get('/tickets', (req, res) => {
 		.catch(console.error());
 })
 
-router.post('/tickets', (req, res) => {
-	res.json({
-		message: 'Post request to tickets received',
-		request: req.body
-	})
+// GETs a specific ticket
+router.get('/events/tickets/:id', (req, res) => {
+	const id = req.params.id
+	Ticket.findByPk(id)
+		.then(ticket => {
+			if (!ticket) {
+				res.status(404).json({
+					message: 'This ticket does not exist'
+				})
+			} else {
+				res.json({ ticket })
+			}
+		})
+		.catch(console.error());
+	
+	
+	// res.json({
+	// 	message: 'Post request to tickets received',
+	// 	request: req.body
+	// })
 })
 
 module.exports = router;
