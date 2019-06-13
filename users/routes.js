@@ -13,11 +13,15 @@ router.get('/users', (req, res) => {
 		.catch(console.error());
 })
 
-router.post('/users', (req, res) => {
-	res.json({
-		message: 'Post request to users received',
-		request: req.body
-	})
-})
+// router.post('/users', (req, res) => {
+// 	res.json({
+// 		message: 'Post request to users received',
+// 		request: req.body
+// 	})
+// })
+
+// User.create({ username: 'FirstUser', password: 'something' })
+// User.create({ username: 'SecondUser', password: 'test' })
+// User.create({ username: 'ThirdUser', password: 'secret' })
 
 module.exports = router;
