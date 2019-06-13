@@ -11,6 +11,7 @@ const usersRouter = require('./users/routes')
 const eventsRouter = require('./events/routes')
 const ticketsRouter = require('./tickets/routes')
 const commentsRouter = require('./comments/routes')
+const loginRouter = require('./auth/routes')
 
 app
   .use(cors())
@@ -19,6 +20,7 @@ app
   .use(eventsRouter)
   .use(ticketsRouter)
   .use(commentsRouter)
+  .use(loginRouter)
 
 app.listen(port, console.log(`Listening on port ${port}`));
 
