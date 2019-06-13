@@ -4,8 +4,13 @@ const Comment = require("./model");
 
 const router = express.Router()
 
-router.get('/comments', (req, res) => {
-  Comment.findAll()
+router.get('/comments/:id', (req, res) => {
+	console.log('REQUEST RECEIVED:', req.params.id)
+	Comment.findAll({
+		where: {
+			ticketId: req.params.id
+		}
+	})
 		.then(comments => {
 			console.log(comments)
 			res.status(200).json({ comments })
