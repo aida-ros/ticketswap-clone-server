@@ -15,7 +15,7 @@ const Ticket = sequelize.define('tickets', {
     }
   },
   image: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     field: "image_url",
     validate: {
       isUrl: true
