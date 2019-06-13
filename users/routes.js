@@ -13,12 +13,19 @@ router.get('/users', (req, res) => {
 		.catch(console.error());
 })
 
-// router.post('/users', (req, res) => {
-// 	res.json({
-// 		message: 'Post request to users received',
-// 		request: req.body
-// 	})
-// })
+// Creates a new user
+router.post('/users', (req, res) => {
+	// res.json({
+	// 	message: 'Post request to users received',
+	// 	request: req.body
+	// })
+	User.create(req.body)
+		.then(event => {
+			res.status(201).json({ 
+				message: 'User created',
+				event: event })
+		})
+})
 
 // User.create({ username: 'FirstUser', password: 'something' })
 // User.create({ username: 'SecondUser', password: 'test' })

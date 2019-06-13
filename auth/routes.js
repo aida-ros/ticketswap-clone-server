@@ -1,9 +1,10 @@
-const { Router } = require('express')
+const express = require("express");
 const { toJWT, toData } = require('./jwt')
 const User = require('../users/model')
 const bcrypt = require('bcrypt')
+const auth = require('./middleware')
 
-const router = new Router()
+const router = express.Router()
 
 router.post('/users', (req, res) => {
   const username = req.body.username
