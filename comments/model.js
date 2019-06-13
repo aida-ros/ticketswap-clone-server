@@ -10,7 +10,7 @@ const Comment = sequelize.define('comments', {
     allowNull: false,
     validate: {
       notNull: {
-        msg: "Cannot submit an empty"
+        msg: "Cannot submit an empty comment"
       }
     }
   },
