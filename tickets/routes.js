@@ -24,10 +24,12 @@ router.get('/events/tickets/:id', (req, res) => {
 					message: 'This ticket does not exist'
 				})
 			} else {
-				const av = calculateRisk(ticket.dataValues)
+				calculateRisk(ticket.dataValues)
 				res.json({ ticket })
 			}
 		})
+		// .then(() => calculateRisk(ticket.dataValues))
+		.then((result) => console.log('THE RESULT:', result))
 		.catch(console.error());
 	
 	
