@@ -1,5 +1,6 @@
 const express = require("express");
 const Ticket = require("./model");
+const calculateRisk = require('../alg/alg')
 
 const router = express.Router()
 
@@ -23,9 +24,11 @@ router.get('/events/tickets/:id', (req, res) => {
 					message: 'This ticket does not exist'
 				})
 			} else {
+				calculateRisk(ticket.dataValues)
 				res.json({ ticket })
 			}
 		})
+		// .then(() => calculateRisk())
 		.catch(console.error());
 	
 	
