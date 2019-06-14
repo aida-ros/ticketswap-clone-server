@@ -8,11 +8,11 @@ const Comment = sequelize.define('comments', {
     type: Sequelize.TEXT,
     field: "text_content",
     allowNull: false,
-    validate: {
-      notNull: {
-        msg: "Cannot submit an empty comment"
-      }
-    }
+    // //validate: {
+    //   notNull: {
+    //     msg: "Cannot submit an empty comment"
+    //   }
+    //}
   },
 },
   {

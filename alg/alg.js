@@ -22,6 +22,8 @@ function calculateRisk (ticket) {
     console.log('AVERAGE PRICE', average)
     return average
   })
+
+// FIND AND COUNTS COMMENTS
   .then(() => {
     Comment.findAll({
       where: {
@@ -29,9 +31,21 @@ function calculateRisk (ticket) {
       }
     })
     .then(comments => {
-      console.log('FOUND COMMENTS:', comments)
+      console.log('FOUND COMMENTS:', comments.length)
+      if (comments.length > 3) {
+        const hasComments = true
+        console.log('HAS +3 COMMENTS', hasComments)
+        return hasComments
+      } else {
+        const hasComments = false
+        console.log('HAS +3 COMMENTS', hasComments)
+        return hasComments
+      }
     })
 
+    // .then(() => {
+    //   User.findall
+    // })
   })
 }
 
