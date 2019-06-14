@@ -12,10 +12,13 @@ function calculateRisk (ticket) {
   })
   .then(tickets => {
     // Calculates the total price
-    const totalPrice = tickets.reduce((prevTicket, nextTicket) => {
-      return parseInt(prevTicket.price) + parseInt(nextTicket.price)
+    const parsedPrices = tickets.map(ticket => parseFloat(ticket.price))
+    const totalPrice = parsedPrices.reduce((prevPrice, nextPrice) => {
+      return prevPrice + nextPrice
     })
-    console.log('TOTALPRICE:', totalPrice)
+    const average = Math.round(totalPrice / tickets.length)
+    console.log('AVERAGE PRICE', average)
+    return average
   })
 }
 
