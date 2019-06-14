@@ -1,10 +1,12 @@
 const Ticket = require('../tickets/model')
+const Comment = require('../comments/model')
 
 function calculateRisk (ticket) {
   console.log('THIS WAS FIRED!')
   console.log('IT RECEIVED', ticket)
   const currentEvent = ticket.eventId
   
+// CALCULATING THE AVERAGE  
   Ticket.findAll({
     where: {
       eventId: currentEvent 
@@ -19,6 +21,17 @@ function calculateRisk (ticket) {
     const average = Math.round(totalPrice / tickets.length)
     console.log('AVERAGE PRICE', average)
     return average
+  })
+  .then(() => {
+    Comment.findAll({
+      where: {
+        ticketId: ticket.id
+      }
+    })
+    .then(comments => {
+      console.log('FOUND COMMENTS:', comments)
+    })
+
   })
 }
 
