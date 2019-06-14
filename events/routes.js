@@ -1,7 +1,6 @@
 const express = require("express");
 const Event = require("./model");
 
-
 const router = express.Router()
 
 // GETs all events
