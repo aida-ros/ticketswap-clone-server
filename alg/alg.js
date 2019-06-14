@@ -4,13 +4,10 @@ const Comment = require('../comments/model')
 function calculateRisk(ticket) {
   console.log('CALCULATION STARTED')
   console.log('TICKET OBJECT RECEIVED', ticket)
+  
   const createdAt = JSON.stringify(ticket.createdAt)
-  console.log('CREATED AT', createdAt)
-  const sliced = createdAt.slice(12, 17)
-  const hours = createdAt.slice(12, 14)
-  console.log('SLICED', sliced)
-  console.log('HOURS', hours)
-
+  const hours = parseInt(createdAt.slice(12, 14))
+  const minutes = parseInt(createdAt.slice(15, 17))
 
   // CALCULATING THE AVERAGE
   Ticket.findAll({
