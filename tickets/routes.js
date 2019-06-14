@@ -28,7 +28,8 @@ router.get('/events/tickets/:id', (req, res) => {
 				res.json({ ticket })
 			}
 		})
-		.then((what) => console.log('WHATTT', what))
+		// .then(() => calculateRisk(ticket.dataValues))
+		.then((result) => console.log('THE RESULT:', result))
 		.catch(console.error());
 	
 	

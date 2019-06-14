@@ -78,9 +78,10 @@ function calculateRisk(ticket) {
         return businessHrs
       }
     })
+    // .then(() => {
+    //   console.log('FINAL VALUES', hasComments, onlyTicket, businessHrs)
+    // })
     .catch(console.error());
-
-    
 }
 
 module.exports = calculateRisk
