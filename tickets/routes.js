@@ -24,7 +24,6 @@ router.get('/events/tickets/:id', (req, res) => {
 					message: 'This ticket does not exist'
 				})
 			} else {
-				
 				return ticket
 			}
 		})
