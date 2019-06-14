@@ -28,15 +28,9 @@ async function calculateRisk(ticket) {
     businessHrs: businessHrs
   }
 
-  ///////////
   const risk = await finalCalculation(ticket, data)
+  return {riskRate: risk, ticket: ticket}
   
-
-  console.log('DATAAAAA', data, 'TICKETTTTT', ticket)
-
-  return [risk, data]
-  
-
 }
 
 function calculateAverage(ticket) {
