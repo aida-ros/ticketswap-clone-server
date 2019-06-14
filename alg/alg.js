@@ -1,16 +1,21 @@
 const Ticket = require('../tickets/model')
 const Comment = require('../comments/model')
-const User = require('../users/model')
 
 function calculateRisk(ticket) {
-  console.log('THIS WAS FIRED!')
-  console.log('IT RECEIVED', ticket)
-  const currentEvent = ticket.eventId
+  console.log('CALCULATION STARTED')
+  console.log('TICKET OBJECT RECEIVED', ticket)
+  const createdAt = JSON.stringify(ticket.createdAt)
+  console.log('CREATED AT', createdAt)
+  const sliced = createdAt.slice(12, 17)
+  const hours = createdAt.slice(12, 14)
+  console.log('SLICED', sliced)
+  console.log('HOURS', hours)
 
-  // CALCULATING THE AVERAGE  
+
+  // CALCULATING THE AVERAGE
   Ticket.findAll({
     where: {
-      eventId: currentEvent
+      eventId: ticket.eventId
     }
   })
     .then(tickets => {
