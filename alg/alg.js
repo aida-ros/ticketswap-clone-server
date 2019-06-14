@@ -4,10 +4,6 @@ const Comment = require('../comments/model')
 function calculateRisk(ticket) {
   console.log('CALCULATION STARTED')
   console.log('TICKET OBJECT RECEIVED', ticket)
-  
-  const createdAt = JSON.stringify(ticket.createdAt)
-  const hours = parseInt(createdAt.slice(12, 14))
-  const minutes = parseInt(createdAt.slice(15, 17))
 
   // CALCULATING THE AVERAGE
   Ticket.findAll({
@@ -54,19 +50,37 @@ function calculateRisk(ticket) {
           userId: ticket.userId
         }
       })
-      .then(tickets => {
-        console.log('TICKETS OF USER FOUND:', tickets.length)
-        if (tickets.length === 1) {
-          const onlyTicket = true
-          console.log('ONLY TICKET:', onlyTicket)
-          return onlyTicket
-        } else {
-          const onlyTicket = false
-          console.log('ONLY TICKET:', onlyTicket)
-          return onlyTicket
-        }
-      })
+        .then(tickets => {
+          console.log('TICKETS OF USER FOUND:', tickets.length)
+          if (tickets.length === 1) {
+            const onlyTicket = true
+            console.log('ONLY TICKET:', onlyTicket)
+            return onlyTicket
+          } else {
+            const onlyTicket = false
+            console.log('ONLY TICKET:', onlyTicket)
+            return onlyTicket
+          }
+        })
     })
+    .then(() => {
+      const createdAt = JSON.stringify(ticket.createdAt)
+      const hours = parseInt(createdAt.slice(12, 14))
+      // CHECKS FOR BUSINESS HOURS (BETWEEN 9 AND 17)
+      // HR 09 MIN 00 AND HR 16 MIN 59
+      if (hours >= 09 && hours < 17) {
+        const businessHrs = true
+        console.log('POSTED DURING BUSINESS HRS', businessHrs)
+        return businessHrs
+      } else {
+        const businessHrs = true
+        console.log('POSTED DURING BUSINESS HRS', businessHrs)
+        return businessHrs
+      }
+    })
+    .catch(console.error());
+
+    
 }
 
 module.exports = calculateRisk

@@ -28,6 +28,7 @@ router.get('/events/tickets/:id', (req, res) => {
 				res.json({ ticket })
 			}
 		})
+		.then((what) => console.log('WHATTT', what))
 		.catch(console.error());
 	
 	
