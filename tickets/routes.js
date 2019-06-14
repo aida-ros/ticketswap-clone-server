@@ -30,7 +30,7 @@ router.get('/events/tickets/:id', (req, res) => {
 		})
 		.then(ticket => calculateRisk(ticket.dataValues))
 		.then((result) => {
-			console.log('THE RESULT:', result)
+			console.log('RESULT OBJECT:', result)
 			res.json(result)
 
 		})

@@ -13,24 +13,29 @@ async function calculateRisk(ticket) {
   const hasComments = await findComments(ticket)
   console.log('HAS +3  COMMENTS', hasComments)
 
-
   // COUNTS TICKETS PER USER
   const userTickets = await ticketsPerUser(ticket)
   console.log('USER HAS +1 TICKET', userTickets)
 
+  // FINDS IF POSTED DURING BUSINESS HOURS
   const businessHrs = await calculateHours(ticket)
   console.log('POSTED DURING BUSINESS HRS', businessHrs)
 
-  const obj = {
+  const data = {
     average: average,
     hasComments: hasComments,
     userTickets: userTickets,
     businessHrs: businessHrs
   }
 
-  return [ticket, obj]
+  ///////////
+  const risk = await finalCalculation(ticket, data)
   
-  console.log('END OBJECT', obj)
+
+  console.log('DATAAAAA', data, 'TICKETTTTT', ticket)
+
+  return [risk, data]
+  
 
 }
 
@@ -97,6 +102,58 @@ function calculateHours(ticket) {
       const businessHrs = true
       return businessHrs
     }
+}
+
+function finalCalculation(ticket, data) {
+  const { average, hasComments, userTickets, businessHrs } = data
+
+  let risk = 0
+  const price = parseInt(ticket.price)
+
+  if (price < average) {
+    const difference = average - price
+    risk = risk + difference
+    console.log('NEW RISK', risk)
+  } 
+  else if (price > average) {
+    let difference = price - average
+    console.log('DIFFERENCE', difference)
+      if (difference > 10) {
+        risk = risk - 10
+      } else {
+        risk = risk - difference
+      }
+    }
+
+    if (hasComments === true) {
+      console.log('HAD MORE THAN 3 COMMENTS, +5')
+      risk = risk + 5
+    }
+
+    if (userTickets === true) {
+      console.log('ONLY TICKET OF THE USER, +10')
+      risk = risk + 10
+    }
+
+    if (businessHrs === true) {
+      console.log('WAS ADDED DURING BUSINESS HRS, +10')
+      risk = risk + 10
+    } else {
+      console.log('WAS NOT ADDED DURING BUSINESS HRS, -10')
+      risk = risk - 10
+    }
+
+    console.log('RISK BEFORE MIN MAX', risk)
+
+    if (risk < 5) {
+      return risk = 5
+    }
+
+    if (risk > 95) {
+      return risk = 95
+    }
+    
+    return risk
 }
 
 module.exports = calculateRisk
