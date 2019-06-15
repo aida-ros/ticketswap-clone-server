@@ -8,19 +8,19 @@ const router = express.Router()
 router.get('/events', (req, res) => {
 	Event.findAll()
 		.then(events => {
-			console.log(events)
 			res.status(200).json({ events })
 		})
 		.catch(console.error());
 })
 
-router.post('/events', (req, res) => {
+router.post('/events', (req, res, next) => {
 	Event.create(req.body)
 		.then(event => {
 			res.status(201).json({ 
 				message: 'Event created',
 				event: event })
 		})
+		.catch(err => next(err));
 })
 
 // GETs a specific event defined by id
