@@ -1,7 +1,6 @@
 const express = require("express");
 const Ticket = require("./model");
-const calculateRisk = require('../alg/alg')
-const { riskOfAllTickets } = require('../alg/calc')
+const { calculateRisk } = require('../alg/alg')
 
 const router = express.Router()
 
