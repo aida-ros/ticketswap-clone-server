@@ -1,6 +1,6 @@
 const express = require("express");
 const Ticket = require("./model");
-const calculateRisk = require('../alg/alg')
+const { calculateRisk } = require('../alg/alg')
 
 const router = express.Router()
 
@@ -8,7 +8,6 @@ const router = express.Router()
 router.get('/tickets', (req, res) => {
   Ticket.findAll()
 		.then(tickets => {
-			console.log(tickets)
 			res.status(200).json({ tickets })
 		})
 		.catch(console.error());
@@ -34,12 +33,6 @@ router.get('/events/tickets/:id', (req, res) => {
 
 		})
 		.catch(console.error());
-	
-	
-	// res.json({
-	// 	message: 'Post request to tickets received',
-	// 	request: req.body
-	// })
 })
 
 module.exports = router;

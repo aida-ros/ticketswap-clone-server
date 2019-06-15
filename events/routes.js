@@ -1,5 +1,6 @@
 const express = require("express");
 const Event = require("./model");
+const { riskOfAllTickets } = require('../alg/alg')
 
 const router = express.Router()
 
@@ -14,10 +15,6 @@ router.get('/events', (req, res) => {
 })
 
 router.post('/events', (req, res) => {
-	// res.json({
-	// 	message: 'Post request to events received',
-	// 	request: req.body
-	// })
 	Event.create(req.body)
 		.then(event => {
 			res.status(201).json({ 
@@ -36,9 +33,14 @@ router.get('/events/:id', (req, res) => {
 					message: 'This event does not exist'
 				})
 			} else {
+				// return riskOfAllTickets(event.dataValues)
 				res.json({ event })
 			}
 		})
+		// .then(result => {
+		// 	console.log('RESULTTTTTT', result)
+		// 	res.json({ result })
+		// })
 		.catch(console.error());
 })
 
