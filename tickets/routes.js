@@ -35,4 +35,14 @@ router.get('/events/tickets/:id', (req, res) => {
 		.catch(console.error());
 })
 
+router.post('/tickets', (req, res) => {
+			Ticket.create(req.body)
+				.then(ticket => {
+					res.status(201).json({ 
+						message: 'Ticket created',
+						ticket: ticket })
+				})
+				.catch(console.error());
+		})
+
 module.exports = router;

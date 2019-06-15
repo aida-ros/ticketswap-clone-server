@@ -5,31 +5,18 @@ const Event = require("../events/model")
 
 const Ticket = sequelize.define('tickets', {
   price: {
-    type: Sequelize.DECIMAL(6, 2),
+    type: Sequelize.STRING,
     field: "price",
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: "Must enter a valid price"
-      }
-    }
+    allowNull: false
   },
   image: {
     type: Sequelize.TEXT,
-    field: "image_url",
-    validate: {
-      isUrl: true
-    }
+    field: "image_url"
   },
   description: {
     type: Sequelize.TEXT,
     field: "description",
     allowNull: false,
-    validate: {
-      notNull: {
-        msg: "Must enter a description"
-      }
-    }
   },
 },
   {
@@ -37,7 +24,7 @@ const Ticket = sequelize.define('tickets', {
   }
 )
 
-Ticket.belongsTo(User)
-Ticket.belongsTo(Event)
+// Ticket.belongsTo(User)
+
 
 module.exports = Ticket;
