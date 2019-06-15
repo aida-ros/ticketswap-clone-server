@@ -55,6 +55,6 @@ const Event = sequelize.define('events', {
 )
 
 // Event.belongsTo(User)
-// Event.hasMany(Ticket)
+Event.hasMany(Ticket, { as: 'tickets', foreignKey: 'eventId'})
 
 module.exports = Event;

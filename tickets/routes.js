@@ -41,7 +41,13 @@ router.post('/tickets', (req, res) => {
 					res.status(201).json({ 
 						message: 'Ticket created',
 						ticket: ticket })
+						return ticket
 				})
+				// .then(ticket => {
+				// 	console.log('TICKEEEEEEEET', ticket)
+				// 	ticket.eventId = 1
+				// 	console.log('another ticketh manananann', ticket)
+				// })
 				.catch(console.error());
 		})
 
