@@ -25,6 +25,7 @@ const Ticket = sequelize.define('tickets', {
 )
 
 // Ticket.belongsTo(User)
+// Ticket.belongsTo(Event)
 
 
 module.exports = Ticket;
