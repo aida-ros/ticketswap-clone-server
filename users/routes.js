@@ -15,10 +15,6 @@ router.get('/users', (req, res) => {
 
 // Creates a new user
 router.post('/users', (req, res) => {
-	// res.json({
-	// 	message: 'Post request to users received',
-	// 	request: req.body
-  // })
   const user = {
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 10)
