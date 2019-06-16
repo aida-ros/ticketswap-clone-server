@@ -2,6 +2,7 @@ const express = require("express");
 const Ticket = require("./model");
 const { calculateRisk } = require('../alg/alg')
 const auth = require('../auth/middleware')
+const { toData } = require('../auth/jwt')
 
 const router = express.Router()
 
@@ -36,8 +37,15 @@ router.get('/events/tickets/:id', (req, res) => {
 		.catch(console.error());
 })
 
-router.post('/tickets', auth, (req, res) => {
-			Ticket.create(req.body)
+router.post('/tickets', (req, res) => {
+	const data = toData(req.body.userId)
+	console.log('IDDDD', data.userId)
+			Ticket.create({
+				userId: data.userId,
+				price: req.body.price,
+				description: req.body.description,
+				image: req.body.image
+			})
 				.then(ticket => {
 					res.status(201).json({ 
 						message: 'Ticket created',
