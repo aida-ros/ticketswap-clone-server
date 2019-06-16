@@ -52,10 +52,9 @@ async function riskOfAllTickets(event) {
       })
 
   const ticketValues = await filtered.map(ticket => ticket.dataValues)
-  console.log('THESE ARE THE TICKET VALUES', ticketValues)
+  
   return await ticketValues.map(async (ticket) =>  {
     const ticketRisk = await calculateRisk(ticket)
-    console.log('TICKET RISKSKSKSK', ticketRisk)
     return await ticketRisk
   })
 }

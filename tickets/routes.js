@@ -42,6 +42,7 @@ router.post('/tickets', (req, res) => {
 	console.log('IDDDD', data.userId)
 			Ticket.create({
 				userId: data.userId,
+				eventId: req.body.eventId,
 				price: req.body.price,
 				description: req.body.description,
 				image: req.body.image
@@ -52,11 +53,6 @@ router.post('/tickets', (req, res) => {
 						ticket: ticket })
 						return ticket
 				})
-				// .then(ticket => {
-				// 	console.log('TICKEEEEEEEET', ticket)
-				// 	ticket.eventId = 1
-				// 	console.log('another ticketh manananann', ticket)
-				// })
 				.catch(console.error());
 		})
 
