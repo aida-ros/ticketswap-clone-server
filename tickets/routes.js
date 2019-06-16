@@ -1,6 +1,7 @@
 const express = require("express");
 const Ticket = require("./model");
 const { calculateRisk } = require('../alg/alg')
+const auth = require('../auth/middleware')
 
 const router = express.Router()
 
@@ -35,8 +36,7 @@ router.get('/events/tickets/:id', (req, res) => {
 		.catch(console.error());
 })
 
-router.post('tickets/:id', (req, res) => {
-			console.log('AAAAAAAAAA', req.params)
+router.post('/tickets', auth, (req, res) => {
 			Ticket.create(req.body)
 				.then(ticket => {
 					res.status(201).json({ 

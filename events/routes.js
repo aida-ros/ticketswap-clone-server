@@ -1,12 +1,18 @@
 const express = require("express");
 const Event = require("./model");
 const { riskOfAllTickets } = require('../alg/alg')
+const auth = require('../auth/middleware')
 
 const router = express.Router()
 
 // GETs all events
 router.get('/events', (req, res) => {
-	Event.findAll()
+	const limit = req.query.offset || 9
+  const offset = req.query.offset || 0
+	console.log('RECEIVED REQ.QUERY', req.query)
+	Event.findAll({
+		limit, offset
+	})
 		.then(events => {
 			res.status(200).json({ events })
 		})
