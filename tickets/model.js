@@ -24,7 +24,8 @@ const Ticket = sequelize.define('tickets', {
   }
 )
 
-Ticket.hasMany(Comment, { as: 'comments', foreignKey: 'ticketId'})
+
+Ticket.hasMany(Comment, {as: 'comments', foreignKey: 'ticketId'});
 Ticket.belongsTo(User)
 
 

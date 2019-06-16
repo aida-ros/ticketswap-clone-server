@@ -7,19 +7,18 @@ const Comment = sequelize.define('comments', {
   content: {
     type: Sequelize.TEXT,
     field: "text_content",
-    allowNull: false,
-    // //validate: {
-    //   notNull: {
-    //     msg: "Cannot submit an empty comment"
-    //   }
-    //}
+    allowNull: false
   },
+  ticketId: {
+    type: Sequelize.INTEGER,
+    field: 'ticketId',
+    allowNull: false,
+    primaryKey: true
+  }
 },
   {
     updatedAt: false
   }
 )
-
-Comment.belongsTo(User)
 
 module.exports = Comment;
