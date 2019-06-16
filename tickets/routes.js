@@ -35,7 +35,8 @@ router.get('/events/tickets/:id', (req, res) => {
 		.catch(console.error());
 })
 
-router.post('/tickets', (req, res) => {
+router.post('tickets/:id', (req, res) => {
+			console.log('AAAAAAAAAA', req.params)
 			Ticket.create(req.body)
 				.then(ticket => {
 					res.status(201).json({ 

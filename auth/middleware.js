@@ -1,30 +1,31 @@
-const User = require("../users/model");
-const { toJWT, toData } = require('./jwt')
+const User = require('../users/model')
 
 function auth(req, res, next) {
-  const auth =
-    req.headers.authorization && req.headers.authorization.split(" ");
-  if (auth && auth[0] === "Bearer" && auth[1]) {
+  const auth = req.headers.authorization && req.headers.authorization.split(' ')
+  if (auth && auth[0] === 'Bearer' && auth[1]) {
     try {
-      const data = toData(auth[1]);
-      User.findById(data.userId)
+      const data = toData(auth[1])
+      User
+        .findById(data.userId)
         .then(user => {
-          if (!user) return next("User does not exist");
+          if (!user) return next('User does not exist')
 
-          req.user = user;
-          next();
+          req.user = user
+          next()
         })
-        .catch(next);
-    } catch (error) {
-      res.status(400).send({
-        message: `Error ${error.name}: ${error.message}`
-      });
+        .catch(next)
     }
-  } else {
+    catch(error) {
+      res.status(400).send({
+        message: `Error ${error.name}: ${error.message}`,
+      })
+    }
+  }
+  else {
     res.status(401).send({
-      message: "Please supply some valid credentials"
-    });
+      message: 'Please supply some valid credentials'
+    })
   }
 }
 
-module.exports = auth;
+module.exports = auth
