@@ -21,6 +21,5 @@ const Comment = sequelize.define('comments', {
 )
 
 Comment.belongsTo(User)
-Comment.belongsTo(Ticket)
 
 module.exports = Comment;
