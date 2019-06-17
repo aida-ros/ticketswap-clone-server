@@ -11,9 +11,10 @@ const Comment = sequelize.define('comments', {
   },
   ticketId: {
     type: Sequelize.INTEGER,
-    field: 'ticketId',
-    allowNull: false,
-    primaryKey: true
+    references: {
+      model: Ticket,
+      key: 'id'
+    }
   }
 },
   {

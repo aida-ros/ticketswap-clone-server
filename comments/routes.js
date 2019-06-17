@@ -1,7 +1,6 @@
 const express = require("express");
 const Comment = require("./model");
 
-
 const router = express.Router()
 
 router.get('/comments/:id', (req, res) => {
