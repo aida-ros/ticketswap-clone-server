@@ -1,6 +1,7 @@
 const express = require("express");
 const Event = require("./model");
 const { riskOfAllTickets } = require('../alg/alg')
+// auth not implemented due to an unsolved error
 const auth = require('../auth/middleware')
 
 const router = express.Router()
@@ -8,8 +9,8 @@ const router = express.Router()
 // GETs all events
 router.get('/events', (req, res) => {
 	const limit = req.query.offset || 9
-  const offset = req.query.offset || 0
-	console.log('RECEIVED REQ.QUERY', req.query)
+	const offset = req.query.offset || 0
+	
 	Event.findAll({
 		limit, offset
 	})
@@ -30,21 +31,23 @@ router.post('/events', (req, res, next) => {
 })
 
 // GETs a specific event defined by id
+// Also used to calculate riskRate for multiple tickets on an event page
 router.get('/events/:id', (req, res) => {
 	const id = req.params.id
 	Event.findByPk(id)
-		.then(event => {
+		.then(async event => {
 			if (!event) {
 				res.status(404).json({
 					message: 'This event does not exist'
 				})
 			} else {
-				// return riskOfAllTickets(event.dataValues)
+				// return await riskOfAllTickets(event.dataValues)
 				res.json({ event })
 			}
 		})
+		// .then(promises => Promise.all(promises))
 		// .then(result => {
-		// 	console.log('RESULTTTTTT', result)
+		// 	console.log('RESULT OBJECT', result)
 		// 	res.json({ result })
 		// })
 		.catch(console.error());
