@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../db");
 const User = require("../users/model")
 const Comment = require("../Comments/model")
+const Event = require('../events/model')
 
 const Ticket = sequelize.define('tickets', {
   price: {
@@ -24,9 +25,10 @@ const Ticket = sequelize.define('tickets', {
   }
 )
 
-
-Ticket.hasMany(Comment, {as: 'comments', foreignKey: 'ticketId'});
+// Ticket.hasMany(Comment, {as: 'comments', foreignKey: 'ticketId'});
+// Ticket.hasMany(Comment)
 Ticket.belongsTo(User)
+// Ticket.belongsTo(Event)
 
 
 module.exports = Ticket;
