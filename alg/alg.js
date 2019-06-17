@@ -8,6 +8,7 @@ const {
   finalCalculation
 } = require('./calc')
 
+// Calculates the risk rate for a single ticket
 async function calculateRisk(ticket) {
   console.log('CALCULATION STARTED')
   console.log('TICKET OBJECT RECEIVED', ticket)
@@ -40,6 +41,7 @@ async function calculateRisk(ticket) {
 
 }
 
+// Used to pass in multiple tickets (for color coding the tickets on EventsDetails page)
 async function riskOfAllTickets(event) {
   const filtered =
     await Ticket.findAll({

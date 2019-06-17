@@ -7,7 +7,7 @@ const connectionString =
 const sequelize = new Sequelize(connectionString);
 
 sequelize
-  .sync({froce:true})
+  .sync()
   .then(() => {
     console.log("Sequelize updated database schema");
   })
